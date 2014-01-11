@@ -7,3 +7,9 @@ standard-app-packages
 autopublish
 insecure
 preserve-inputs
+accounts-twitter
+accounts-google
+underscore
+jquery
+bootstrap
+coffeescript
