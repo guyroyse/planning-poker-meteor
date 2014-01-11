@@ -7,4 +7,5 @@ Template.header.tagline = ->
 Template.login.events =
   'click #signIn': ->
     Meteor.loginWithTwitter()
-
+  'click #signOut': ->
+    Meteor.logout()

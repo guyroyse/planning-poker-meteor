@@ -27,11 +27,10 @@
     {{#if currentUser}}
       <p class="navbar-text">
         Signed in as
-        <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>
+        <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut" href="#">Sign out</a>.
       </p>
     {{else}}
-      <p class="navbar-text">Sign In</p>
-      <button type="button" id="signIn" class="btn btn-default navbar-btn">Twitter</button>
+      <p class="navbar-text">Sign in with <a id="signIn" href="#">Twitter</a>.</p>
     {{/if}}
   </aside>
 </template>
