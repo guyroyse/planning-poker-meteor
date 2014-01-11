@@ -1,13 +1,28 @@
 <head>
-  <title>PlanningPoker</title>
+  <title>Guy's Planning Poker</title>
 </head>
 
 <body>
-  {{> hello}}
+  {{> header }}
+  {{> login }}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="header">
+  <header>
+    <h1>{{title}}</h1>
+    <h2>{{tagline}}</h2>
+  </header>
 </template>
+
+<template name="login">
+  <aside id="login">
+    {{#if currentUser}}
+      <img src="{{currentUser.services.twitter.profile_image_url}}" />
+      <p id="twitterName">{{currentUser.profile.name}}</p>
+      <p id="twitterId">@{{currentUser.services.twitter.screenName}}</p>
+    {{else}}
+      <img id="signIn" src="sign-in-with-twitter-gray.png" />
+    {{/if}}
+  </aside>
+</template>
+

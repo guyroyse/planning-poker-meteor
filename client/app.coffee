@@ -1,7 +1,10 @@
-Template.hello.greeting = ->
-  'Welcome to PlanningPoker'
+Template.header.title = ->
+  "Guy's Planning Poker"
 
-Template.hello.events =
-  'click input' : ->
-    console.log 'You pressed the button'
+Template.header.tagline = ->
+  'Shuffle up and Deal!'
+
+Template.login.events =
+  'click #signIn': ->
+    Meteor.loginWithTwitter()
 
