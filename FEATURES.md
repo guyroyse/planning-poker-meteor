@@ -5,7 +5,6 @@ for the Planning Poker application.
 
 ## To Do
 
-Login via Twitter
 Login via Google
 Create a room
 Invite others to a room
@@ -17,4 +16,6 @@ Reset voting
 ## Doing
 
 ## Done
+
+Login via Twitter
 

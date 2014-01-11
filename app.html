@@ -1,13 +1,18 @@
+<template name="layout">
+
 <head>
   <title>Guy's Planning Poker</title>
 </head>
 
 <body>
-  {{> header }}
-  {{> login }}
+  {{>navbar}}
+  {{>jumbotron}}
+  {{yield}}
 </body>
 
-<template name="header">
+</template>
+
+<template name="navbar">
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -15,23 +20,71 @@
       </div>
       <div class="navbar-collapse collapse">
         <div class="navbar-right">
-          {{> login}}
+          {{#if currentUser}}
+            <p class="navbar-text">
+              Signed in as <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut" href="#">Sign out</a>.
+            </p>
+          {{else}}
+            <p class="navbar-text">Sign in with <a id="signIn" href="#">Twitter</a>.</p>
+          {{/if}}
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<template name="login">
-  <aside id="login">
-    {{#if currentUser}}
-      <p class="navbar-text">
-        Signed in as
-        <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut" href="#">Sign out</a>.
-      </p>
-    {{else}}
-      <p class="navbar-text">Sign in with <a id="signIn" href="#">Twitter</a>.</p>
-    {{/if}}
-  </aside>
+<template name="jumbotron">
+<div class="jumbotron">
+  <div class="container">
+        <h1>Shuffle Up and Deal</h1>
+        <p>Welcome to Guy's Planning Poker. You can use this site to play
+        planning poker with your distributed teams. Just create a room, invite
+        your team, and start flipping cards.</p>
+      </div>
+    </div>
+</template>
+
+<template name="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Join A Room</h2>
+        <p>Select a room to join that you have been invited to. Once there with
+        the rest of the team you can vote.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Create A Room</h2>
+        <p>Need a room? Create one and invite team members.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Profile</h2>
+        <p>Edit you profile and set you preferences.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <a id="joinRoom" class="btn btn-lg btn-primary" href="#">Join Room</a>
+      </div>
+      <div class="col-md-4">
+        <a id="createRoom" class="btn btn-lg btn-primary" href="#">Create Room</a>
+      </div>
+      <div class="col-md-4">
+        <a id="editProfile" class="btn btn-lg btn-primary" href="#">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="room">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        You're a room with
+        {{#each occupants}}
+          {{.}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </template>
 
