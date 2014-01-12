@@ -1,0 +1,12 @@
+<template name="room">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{room.name}}</h1>
+      Occupants: 
+      <ul class="inline-text-list">
+        {{#each occupants}}<li>{{.}}</li>{{/each}}
+      </ul>
+    </div>
+  </div>
+</template>
+

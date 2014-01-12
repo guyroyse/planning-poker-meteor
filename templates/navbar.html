@@ -1,0 +1,21 @@
+<template name="navbar">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a id="navbarHome" class="navbar-brand">Guy's Planning Poker</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <div class="navbar-right">
+          {{#if currentUser}}
+            <p class="navbar-text">
+              Signed in as <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut">Sign out</a>.
+            </p>
+          {{else}}
+            <p class="navbar-text">Sign in with <a id="signIn">Twitter</a>.</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
