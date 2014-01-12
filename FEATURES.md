@@ -5,18 +5,19 @@ for the Planning Poker application.
 
 ## To Do
 
-Login via Google
 Invite others to a room
 Remove others to a room
-Room chat
 Vote
 Reset voting
+Login via Google
+Room chat
 
 ## Doing
 
-Create a room
+Join a Room
 
 ## Done
 
 Login via Twitter
+Create a room
 
