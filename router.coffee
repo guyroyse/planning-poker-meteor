@@ -10,3 +10,4 @@ Router.map ->
     path: '/'
   this.route 'room'
   this.route 'create'
+  this.route 'join'
