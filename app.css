@@ -1,1 +1,28 @@
 /* CSS declarations go here */
+
+ul.inline-text-list {
+  display: inline;
+  padding-left: 0;
+}
+
+ul.inline-text-list li {
+  display: inline;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+ul.inline-text-list li:before {
+  content: ", ";
+}
+
+ul.inline-text-list li:first-child:before {
+  content: "";
+}
+
+#navbarHome, #signIn, #signOut {
+  cursor: pointer;
+}
+
+body {
+  padding-top: 50px; 
+}

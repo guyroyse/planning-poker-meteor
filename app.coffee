@@ -1,34 +1,50 @@
 @Rooms = new Meteor.Collection('rooms')
 
+@mustBeSignedIn = ->
+  unless Meteor.user()
+    @render 'login'
+    @stop()
+
+
+currentRoom = ->
+  Rooms.findOne
+    _id: Session.get 'room'
+
+createRoom = (name) ->
+  Rooms.insert
+    name: $('#roomName').val()
+    invitees: [Meteor.userId()]
+    occupants: [Meteor.userId()]
+
 if Meteor.isClient
 
-  Template.navbar.title = ->
-    "Guy's Planning Poker"
-
   Template.navbar.events =
-    'click #signIn': ->
-      Meteor.loginWithTwitter()
-
-    'click #signOut': ->
-      Meteor.logout()
+    'click #navbarHome': ->   Router.go 'home'
+    'click #signIn': ->       Meteor.loginWithTwitter()
+    'click #signOut': ->      Meteor.logout()
 
   Template.home.events =
     'click #joinRoom': ->
-
-    'click #createRoom': ->
-      console.log 'creating room'
-      room = Rooms.insert
-        invitees: [Meteor.userId()]
-        occupants: [Meteor.userId()]
-      Session.set 'room', room
-      Router.go 'room'
-
+    'click #createRoom': ->   Router.go 'create'
     'click #editProfile': ->
+    'click #signIn': ->       Meteor.loginWithTwitter()
+
+  Template.login.events =
+    'click #signIn': ->       Meteor.loginWithTwitter()
+
+  Template.create.events =
+    'submit #createRoom' : ->
+      roomName = $('#roomName').val()
+      roomId = createRoom roomName
+      Session.set 'room', roomId
+      Router.go 'room'
+      false
+
+  Template.room.room = ->
+    currentRoom()
 
   Template.room.occupants = ->
-    room = Rooms.findOne
-      _id: Session.get('room')
-    room.occupants.map (id) ->
+    currentRoom().occupants.map (id) ->
       occupant = Meteor.users.findOne
         _id: id
       occupant.profile.name

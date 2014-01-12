@@ -6,7 +6,6 @@ for the Planning Poker application.
 ## To Do
 
 Login via Google
-Create a room
 Invite others to a room
 Remove others to a room
 Room chat
@@ -14,6 +13,8 @@ Vote
 Reset voting
 
 ## Doing
+
+Create a room
 
 ## Done
 

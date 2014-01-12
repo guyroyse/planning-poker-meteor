@@ -6,7 +6,6 @@
 
 <body>
   {{>navbar}}
-  {{>jumbotron}}
   {{yield}}
 </body>
 
@@ -16,16 +15,16 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">{{title}}</a>
+        <a id="navbarHome" class="navbar-brand">Guy's Planning Poker</a>
       </div>
       <div class="navbar-collapse collapse">
         <div class="navbar-right">
           {{#if currentUser}}
             <p class="navbar-text">
-              Signed in as <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut" href="#">Sign out</a>.
+              Signed in as <a href="http://twitter.com/{{currentUser.services.twitter.screenName}}">@{{currentUser.services.twitter.screenName}}</a>. Not you? <a id="signOut">Sign out</a>.
             </p>
           {{else}}
-            <p class="navbar-text">Sign in with <a id="signIn" href="#">Twitter</a>.</p>
+            <p class="navbar-text">Sign in with <a id="signIn">Twitter</a>.</p>
           {{/if}}
         </div>
       </div>
@@ -33,27 +32,24 @@
   </div>
 </template>
 
-<template name="jumbotron">
-<div class="jumbotron">
-  <div class="container">
-        <h1>Shuffle Up and Deal</h1>
-        <p>Welcome to Guy's Planning Poker. You can use this site to play
-        planning poker with your distributed teams. Just create a room, invite
-        your team, and start flipping cards.</p>
-      </div>
-    </div>
-</template>
-
 <template name="home">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Shuffle Up and Deal</h1>
+      <p>Welcome to Guy's Planning Poker. You can use this site to play
+      planning poker with your distributed teams. Just create a room, invite
+      your team, and start flipping cards.</p>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <h2>Join A Room</h2>
+        <h2>Join a Room</h2>
         <p>Select a room to join that you have been invited to. Once there with
         the rest of the team you can vote.</p>
       </div>
       <div class="col-md-4">
-        <h2>Create A Room</h2>
+        <h2>Create a Room</h2>
         <p>Need a room? Create one and invite team members.</p>
       </div>
       <div class="col-md-4">
@@ -62,28 +58,69 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
-        <a id="joinRoom" class="btn btn-lg btn-primary" href="#">Join Room</a>
+      <div class="col-md-2">
+        <a id="joinRoom" class="btn btn-lg btn-primary btn-block">Join Room</a>
       </div>
-      <div class="col-md-4">
-        <a id="createRoom" class="btn btn-lg btn-primary" href="#">Create Room</a>
+      <div class="col-md-2 col-md-offset-2">
+        <a id="createRoom" class="btn btn-lg btn-primary btn-block">Create Room</a>
       </div>
-      <div class="col-md-4">
-        <a id="editProfile" class="btn btn-lg btn-primary" href="#">Edit Profile</a>
+      <div class="col-md-2 col-md-offset-2">
+        <a id="editProfile" class="btn btn-lg btn-primary btn-block">Edit Profile</a>
       </div>
     </div>
   </div>
 </template>
 
-<template name="room">
+<template name="login">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Shuffle Up and Deal</h1>
+      <p>Welcome to Guy's Planning Poker. You can use this site to play
+      planning poker with your distributed teams. Just create a room, invite
+      your team, and start flipping cards.</p>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        You're a room with
-        {{#each occupants}}
-          {{.}}
-        {{/each}}
+      <div class="col-md-8 col-md-offset-2">
+        <h2 class="text-center">Sign in with <a id="signIn">Twitter</a> and get started now!</h2>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="create">
+  <div class="jumbotron">
+    <div class="container">
+    </div>
+  </div>
+
+  <form id="createRoom" class="container">
+
+    <div class="row">
+      <div class="form-group col-md-6 col-md-offset-3">
+        <h3>Give your room a name</h3>
+        <input type="text" class="form-control input-lg" id="roomName" placeholder="My Awesome Room" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-actions col-md-2 col-md-offset-5">
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Create Room</button>
+      </div>
+    </div>
+
+  </form>
+</template>
+
+<template name="room">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{room.name}}</h1>
+      Occupants: 
+      <ul class="inline-text-list">
+        {{#each occupants}}<li>{{.}}</li>{{/each}}
+      </ul>
     </div>
   </div>
 </template>
