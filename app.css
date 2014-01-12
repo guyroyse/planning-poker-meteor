@@ -19,7 +19,7 @@ ul.inline-text-list li:first-child:before {
   content: "";
 }
 
-#navbarHome, #signIn, #signOut, #createRoom {
+#navbarHome, #signIn, #signOut, #createRoom, .joinRoom {
   cursor: pointer;
 }
 

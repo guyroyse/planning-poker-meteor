@@ -5,6 +5,13 @@
     @render 'login'
     @stop()
 
+UserAdapter =
+
+  findUserById: (id) ->
+    Meteor.users.findOne
+      _id: id
+
+
 RoomAdapter =
 
   newRoom: (name, creator) ->
@@ -32,6 +39,7 @@ RoomAdapter =
       newOccupants = room.occupants.filter (id) -> id isnt userId
       Rooms.update { _id: room._id }, { $set: { occupants: newOccupants } }
 
+
 SessionAdapter =
 
   room: (roomId) ->
@@ -52,6 +60,12 @@ joinRoom = (roomId) ->
   RoomAdapter.addUserToRoom roomId, Meteor.userId()
   RoomAdapter.removeUserFromOtherRooms roomId, Meteor.userId()
   SessionAdapter.room roomId
+
+currentRoomOccupantNames = ->
+  currentRoom().occupants.map (occupantId) ->
+    occupant = UserAdapter.findUserById occupantId
+    occupant.profile.name
+
 
 if Meteor.isClient
 
@@ -80,18 +94,9 @@ if Meteor.isClient
       Router.go 'room'
       false
 
-  Template.join.thereAreRooms = ->
-    myRooms().count() > 0
+  Template.join.thereAreRooms = -> myRooms().count() > 0
+  Template.join.rooms =         -> myRooms()
 
-  Template.join.rooms = ->
-    myRooms()
-
-  Template.room.room = ->
-    currentRoom()
-
-  Template.room.occupants = ->
-    currentRoom().occupants.map (id) ->
-      occupant = Meteor.users.findOne
-        _id: id
-      occupant.profile.name
+  Template.room.room =          -> currentRoom()
+  Template.room.occupants =     -> currentRoomOccupantNames()
 
