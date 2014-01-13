@@ -25,3 +25,7 @@ body {
   padding-top: 50px; 
 }
 
+.homeRow {
+  min-height: 120px;
+}
+
