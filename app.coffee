@@ -85,6 +85,9 @@ if Meteor.isClient
 
   Template.join.events =
     'click #createRoom':    -> Router.go 'create'
+    'click .joinRoom':      ->
+      joinRoom this._id
+      Router.go 'room'
 
   Template.create.events =
     'submit #createRoom' : ->
