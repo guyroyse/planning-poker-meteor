@@ -1,3 +1,8 @@
+mustBeSignedIn = ->
+  unless Meteor.user()
+    @render 'login'
+    @stop()
+
 Router.configure
   layoutTemplate:   'layout'
   notFoundTemplate: 'home'
@@ -11,3 +16,4 @@ Router.map ->
   this.route 'room'
   this.route 'create'
   this.route 'join'
+
